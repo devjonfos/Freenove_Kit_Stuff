@@ -1,10 +1,11 @@
 /**********************************************************************
 * Filename    : Blink-break.c
-* Description : Basic usage of GPIO. Blink LED 0 (#18).
+* Description : Basic usage of GPIO. Blink LED 0 (#17).
 *               Added catching break signal and turning off LED
 * Authors     : www.freenove.com and
 *               Jon Foster (jonfos@devjonfos.net)
-* Modification: 9-Oct-2020
+* License     : CC BY-NC-SA 3.0
+* Modification: 10-Oct-2020
 **********************************************************************/
 
 #include <wiringPi.h>
@@ -13,7 +14,8 @@
 #include <signal.h>
 
 // See http://wiringpi.com/pins/
-#define  ledPin    0  //define the led pin number
+#define  ledPin    0  //define the led pin number; BCM 17 = wPi 0
+                      //use 'gpio readall' for pinouts
 
 // Catch the CTRL-C interrupt and turn LED off
 void interruptHandler(int signal)
@@ -38,7 +40,8 @@ void main(void)
   pinMode(ledPin, OUTPUT);          //Set the pin mode
   printf("Using pin%d\n",ledPin);   //Output information on terminal
 
-  while(1)
+  // Infinite loop; CTRL-C to stop
+  while(TRUE)
   {
     digitalWrite(ledPin, HIGH);     //Make GPIO output HIGH level
     printf("led turned on >>>\n");  //Output information on terminal
