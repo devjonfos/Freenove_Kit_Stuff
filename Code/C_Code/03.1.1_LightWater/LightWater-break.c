@@ -56,6 +56,7 @@ int main(void)
   int i;
 
   signal(SIGINT, interruptHandler); //Catch the CTRL-C
+  signal(SIGHUP, interruptHandler); //If process is backgrounded
 
   printf("Program is starting ... \n");
 
