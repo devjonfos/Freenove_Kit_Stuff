@@ -21,7 +21,7 @@
 pi@raspberrypi:~/Freenove_Kit/Code/C_Code/03.1.1_LightWater$ ./LightWater-break 2>&1 >/dev/null &
 [1] 5482
 pi@raspberrypi:~/Freenove_Kit/Code/C_Code/03.1.1_LightWater$ jobs
-[1]+  Running                 ./LightWater-break 2> 1 > /dev/null &
+[1]+  Running                 ./LightWater-break 2>&1 > /dev/null &
 pi@raspberrypi:~/Freenove_Kit/Code/C_Code/03.1.1_LightWater$ disown 5482
 pi@raspberrypi:~/Freenove_Kit/Code/C_Code/03.1.1_LightWater$ jobs
 pi@raspberrypi:~/Freenove_Kit/Code/C_Code/03.1.1_LightWater$ ps -C 'LightWater-brea'
