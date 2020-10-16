@@ -173,6 +173,8 @@ int main(int argc, char *argv[])
     for( i=0; i<3; i++ )
       rotateLEDs();
 
+    delay(blinkDelay*2);
+
     for( i=0; i<3; i++ )
       blinkLEDs();
   }
