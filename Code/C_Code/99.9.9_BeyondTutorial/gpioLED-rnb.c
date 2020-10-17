@@ -11,7 +11,7 @@
 * License: CC BY-NC-SA 4.0
 *          https://creativecommons.org/licenses/by-nc-sa/4.0/
 *
-* Modification: 15-Oct-2020
+* Modification: 17-Oct-2020
 *
 * Compile: gcc -Wall gpioLED-rnb.c -o gpioLED-rnb -lwiringPi
 *
@@ -35,9 +35,9 @@ int gpioPins[numLEDs] = {0,1,2,3,4,5,6,8,9,10};
 // Initialize as 300
 unsigned int blinkDelay = 300;
 
-// Initialize as gpioL
-bool setLOW = true;
-bool setHIGH = false;
+// Initialize as gpioH
+int setOff = 0;
+int setOn = 1;
 
 // Rotate LEDs
 void rotateLEDs(void)
@@ -46,9 +46,9 @@ void rotateLEDs(void)
 
   for( i=0; i<numLEDs; i++ )
   {
-    digitalWrite(gpioPins[i], setLOW);
+    digitalWrite(gpioPins[i], setOn);
     delay(blinkDelay);
-    digitalWrite(gpioPins[i], setHIGH);
+    digitalWrite(gpioPins[i], setOff);
   }
 }
 
@@ -58,12 +58,12 @@ void blinkLEDs(void)
   int i;
 
   for( i=0; i<numLEDs; i++ )
-    digitalWrite(gpioPins[i], setLOW);
+    digitalWrite(gpioPins[i], setOn);
 
   delay(blinkDelay);
 
   for( i=0; i<numLEDs; i++ )
-    digitalWrite(gpioPins[i], setHIGH);
+    digitalWrite(gpioPins[i], setOff);
 
   delay(blinkDelay);
 }
@@ -78,14 +78,14 @@ void resetLEDs(void)
   for( i=0; i<numLEDs; i++ ) // Set pinMode to output; all pins on
   {
     pinMode(gpioPins[i], OUTPUT);
-    digitalWrite(gpioPins[i], setLOW);
+    digitalWrite(gpioPins[i], setOn);
   }
 
   delay(blinkDelay);
 
   for( i=0; i<numLEDs; i++) // All pins off
   {
-    digitalWrite(gpioPins[i], setHIGH);
+    digitalWrite(gpioPins[i], setOff);
   }
 }
 
@@ -136,18 +136,18 @@ void checkArguments(int argc, char *argv[])
 
       if( strcmp(argv[2], "gpioL") == 0 )
       {
-        setLOW = true;
-        setHIGH = false;
+        setOff = 1;
+        setOn = 0;
       }
       else if( strcmp(argv[2], "gpioH") == 0 )
       {
-        setLOW = false;
-        setHIGH = true;
+        setOff = 0;
+        setOn = 1;
       }
       else
       {
-        printf("Argument 2 is activate 'gpioL' for low-state or 'gpioH' for high-state\n");
-        printf("Setting 'gpioL' for low-state to activate\n");
+        printf("Argument 2 is 'gpioL' or 'gpioH' (activate on low-state or high-state)\n");
+        printf("Setting 'gpioH' for activate on high-state\n");
       }
       break;
 
