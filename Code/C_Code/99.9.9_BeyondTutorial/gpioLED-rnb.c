@@ -148,6 +148,8 @@ void checkArguments(int argc, char *argv[])
       {
         printf("Argument 2 is 'gpioL' or 'gpioH' (activate on low-state or high-state)\n");
         printf("Setting 'gpioH' for activate on high-state\n");
+        setOff = 0;
+        setOn = 1;
       }
       break;
 
